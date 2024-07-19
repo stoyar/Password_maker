@@ -38,7 +38,7 @@ const restorePasswordOptions = () => {
     if (!localStorage.getItem('passwordOptions')) return;
 
     const passwordOptions = JSON.parse(localStorage.getItem('passwordOptions'));
-    
+
     uppercase.checked = passwordOptions.uppercase;
     numbers.checked = passwordOptions.numbers;
     symbols.checked = passwordOptions.symbols;
@@ -64,15 +64,16 @@ const shuffleString = (rawString) => {
 };
 
 const createCharString = () => {
-    return Object.keys(characterCategories)
+    const selectedChars = Object.keys(characterCategories)
         .reduce((prev, current) => {
             const paramCheckbox = document.querySelector('#' + current);
 
-            if (!paramCheckbox.checked) return prev;
+            if (paramCheckbox.checked) return prev + characterCategories[current];
 
-            return [...prev, characterCategories[current]];
-        }, [])
-        .join('');
+            return prev;
+        }, '');
+
+    return shuffleString(selectedChars);
 }
 
 const generatePassword = (length) => {
