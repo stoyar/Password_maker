@@ -59,11 +59,11 @@ body {
 }
 
 .wrapper .pass-indicator {
+    display: block;
     width: 100%;
     height: 5px;
     position: relative;
     margin-top: 1rem;
-    border-radius: 25px;
 }
 
 .wrapper .pass-indicator::before {
@@ -71,11 +71,23 @@ body {
     position: absolute;
     height: 100%;
     width: 50%;
+    transition: all 0.3s ease;
+    border-radius: 2.5px;
 }
 
 .wrapper .pass-indicator.weak::before {
     width: 20%;
     background: red;
+}
+
+.wrapper .pass-indicator.medium::before {
+    width: 50%;
+    background: orange;
+}
+
+.wrapper .pass-indicator.strong::before {
+    width: 100%;
+    background: green;
 }
 
 .wrapper .pass-length {
